@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro en Rics Racs</title>
+    <style>
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-image: url('https://source.unsplash.com/1600x900/?adventure,nature');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con opacidad */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6600; /* Título en color naranja */
+        }
+
+        input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+            outline: 2px solid #ff6600; /* Borde de enfoque en naranja */
+        }
+
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #ff6600; /* Botón en naranja */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ffcc99; /* Botón cambia de color al hacer hover */
+        }
+
+        .back-button {
+            background-color: #333; /* Botón de regresar en color negro */
+            color: #ff6600;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px 0 0 0;
+        }
+
+        .back-button:hover {
+            background-color: #ff6600; /* Fondo en naranja al pasar el mouse */
+            color: #fff;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Crear una cuenta nueva</h2>
+        <form action="registro.php" method="post">
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+            <input type="number" id="edad" name="edad" placeholder="Edad" required>
+            <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+            <input type="submit" value="Registrarse">
+        </form>
+        <div class="btn-group">
+            <button class="back-button" onclick="window.location.href='index.php'">Regresar</button>
+            <button class="back-button" onclick="window.location.href='inicio_sesion.html'">Iniciar sesión</button>
+        </div>
+    </div>
+</body>
+</html>

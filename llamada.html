@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videollamada con Daily API</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #00203FFF, #ADEFD1FF);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+    #video-container {
+      width: 90%;
+      max-width: 900px;
+      height: 550px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    #video-call {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px 16px 0 0;
+      position: relative;
+    }
+    #controls {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      padding: 15px 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 0 0 16px 16px;
+      border-top: 2px solid #444;
+      position: absolute;
+      bottom: 0;
+    }
+    button {
+      background-color: #00C1D4;
+      border: none;
+      padding: 12px 25px;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    button:hover {
+      background-color: #0098AA;
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+    .status {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: #FFD700;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="video-container">
+    <div class="status" id="status-message">Listo para la videollamada</div>
+    <div id="video-call"></div>
+    <div id="controls">
+      <button id="start-call">Iniciar Llamada</button>
+      <button id="end-call">Finalizar Llamada</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@daily-co/daily-js"></script>
+  <script>
+    const callFrame = Daily.createFrame({
+      iframeStyle: {
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        border: '0',
+      },
+    });
+
+    document.getElementById('start-call').addEventListener('click', async () => {
+      const url = 'https://ascasd.daily.co/LLamadas'; // URL de tu sala
+      try {
+        await callFrame.join({ url });
+        document.getElementById('video-call').appendChild(callFrame.iframe());
+        document.getElementById('status-message').innerText = 'Llamada en curso...';
+      } catch (error) {
+        document.getElementById('status-message').innerText = 'Error al unirse a la llamada: ' + error.message;
+      }
+    });
+
+    document.getElementById('end-call').addEventListener('click', () => {
+      callFrame.leave();
+      document.getElementById('video-call').innerHTML = '';
+      document.getElementById('status-message').innerText = 'Llamada finalizada.';
+    });
+
+    callFrame.on('joined-meeting', () => {
+      console.log('Te has unido a la reunión');
+    });
+
+    callFrame.on('left-meeting', () => {
+      console.log('Has salido de la reunión');
+    });
+
+    callFrame.on('error', (error) => {
+      console.error('Error en la llamada:', error);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rics Racs - Contacto</title>
+    <!-- Fuente de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Tipografía y colores globales */
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #ffffff; /* Fondo blanco para una apariencia limpia */
+            color: #333; /* Gris oscuro para el texto */
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: #333; /* Texto gris oscuro */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ff6600; /* Color de acento al pasar el mouse */
+        }
+
+        /* Navegación */
+        nav {
+            background-color: #8B4513; /* Marrón Saddle Brown */
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(139, 69, 19, 0.9); /* Fondo al hacer scroll */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: #ffffff; /* Texto blanco en navegación */
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffcc99; /* Color de acento para hover */
+        }
+
+        .logo img {
+            width: 120px;
+            display: block;
+            border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 4px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Navegación links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Animaciones para el menú móvil */
+        .menu-toggle.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.open div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Hide links in mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #ffffff;
+                flex-direction: column;
+                width: 200px;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                animation: fadeIn 0.5s ease;
+            }
+
+            nav a {
+                margin: 10px 0;
+                text-align: center;
+                color: #333;
+                font-weight: 500;
+            }
+
+            /* Display menu button in mobile */
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        /* Animaciones clave */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceIn {
+            from, 20%, 40%, 60%, 80%, to {
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            0% {
+                opacity: 0;
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+            20% {
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+            40% {
+                transform: scale3d(0.9, 0.9, 0.9);
+            }
+            60% {
+                opacity: 1;
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+            80% {
+                transform: scale3d(0.97, 0.97, 0.97);
+            }
+            to {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: fadeIn 1s ease;
+            margin-top: 60px; /* Espacio para el nav fijo */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Overlay oscuro */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            animation: slideIn 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            background-color: #ff6600;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: bounceIn 1s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ffcc99;
+            transform: translateY(-3px);
+        }
+
+        /* Contenido principal */
+        main {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease;
+        }
+
+        /* Sección de Contacto Estilo Blog */
+        .contact-blog {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .contact-section {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .contact-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-section img {
+            width: 150px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-section img:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-text h3 {
+            color: #ff6600;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .contact-text h3::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: #ff6600;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .contact-text p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Mapa y botón mejorado */
+#map-container {
+    /* Fondo con un gradiente sutil para darle más profundidad */
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 15px;
+    overflow: hidden;
+    /* Sombra más profunda para un efecto de elevación */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+    /* Transiciones más suaves y efectos de sombra al hacer hover */
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+#map-container:hover {
+    /* Mayor desplazamiento y sombra más intensa al hacer hover */
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    /* Línea divisoria para separar el mapa de las acciones */
+    border-bottom: 2px solid #ff6600;
+}
+
+.map-actions {
+    text-align: center;
+    padding: 25px 20px;
+    background-color: #fafafa;
+}
+
+.map-actions button {
+    /* Botón con gradiente diagonal para un aspecto más dinámico */
+    background: linear-gradient(45deg, #ff6600, #ff8c00);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    /* Sombra para dar un efecto de elevación */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    /* Transiciones para suavizar los efectos al interactuar */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    /* Flexbox para alinear el icono y el texto si se añade uno */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre icono y texto */
+}
+
+.map-actions button:hover {
+    /* Cambio de gradiente al hacer hover */
+    background: linear-gradient(45deg, #ff8c00, #ffa500);
+    /* Desplazamiento hacia arriba al hacer hover */
+    transform: translateY(-5px);
+    /* Sombra más intensa al hacer hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.map-actions button:active {
+    /* Efecto al hacer clic */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.map-actions p {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #444;
+    font-weight: 500;
+}
+
+/* Animaciones clave */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+        /* Pie de página */
+        footer {
+            background-color: #2E2E2E;
+            color: #ccc;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            animation: fadeIn 1s ease;
+        }
+
+        footer p {
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #ccc;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff6600;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            nav .nav-container {
+                padding: 0 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-blog {
+                gap: 20px;
+            }
+
+            .contact-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .contact-section img {
+                width: 100px;
+            }
+
+            .contact-text h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            #map {
+                height: 300px;
+            }
+        }/* Estilos para el botón de Servicio al Cliente */
+.video-call-button {
+    padding: 14px 30px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-call-button:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+}
+
+/* Icono de videollamada */
+.video-call-button .icon {
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+        
+    </style>
+</head>
+<body>
+    <!-- Header con Navegación -->
+    <header>
+        <nav id="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="#">
+                        <img src="Imagenes/Logo.jpg" alt="Rics Racs Logo">
+                    </a>
+                </div>
+                <div class="menu-toggle" id="mobile-menu" aria-label="Menú de navegación">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="nav-links">
+                    <a href="index.php">Inicio</a>
+                    <a href="productos.php">Productos</a>
+                    <a href="instalacion.html">Instalación</a>
+                    <a href="garantia.html">Garantía</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Contacto</h1>
+            <p>Estamos aquí para ayudarte. Ponte en contacto con nosotros para cualquier consulta o soporte.</p>
+        </div>
+    </section>
+
+    <main id="contact">
+        <div class="contact-blog">
+            <!-- Historia de la Empresa -->
+            <div class="contact-section">
+                <img src="https://via.placeholder.com/150" alt="Historia de Rics Racs">
+                <div class="contact-text">
+                    <h3>Nuestra Historia</h3>
+                    <p>
+                        Fundada en 1995 por Ricardo García, Rics Racs nació en un pequeño taller con el sueño de proporcionar soluciones de almacenamiento innovadoras para vehículos. A lo largo de los años, hemos crecido gracias a la confianza de nuestros clientes y al compromiso con la calidad y la excelencia. Nuestra misión es ofrecer productos duraderos y estéticamente agradables que mejoren la experiencia de conducción de cada uno de nuestros clientes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Información de Contacto -->
+            <div class="contact-section">
+                <img src="https://via.placeholder.com/150" alt="Teléfono">
+                <div class="contact-text">
+                    <h3>Contacto</h3>
+                    <p>Tel: <a href="tel:+528442962415">(844) 296 2415</a></p>
+                    <p>Email: <a href="gmail:23040118@alumno.utc.edu.mx">23040118@alumno.utc.edu.mx</a></p>
+                </div>
+            </div>
+
+            <!-- Ubicación -->
+            <div class="contact-section">
+                <img src="https://via.placeholder.com/150" alt="Ubicación">
+                <div class="contact-text">
+                    <h3>Ubicación</h3>
+                    <p>Valentin Gomez Farias 1883</p>
+                    <p>Ramos Arizpe, Coahuila</p>
+                </div>
+            </div>
+        </div>
+        <!-- Mapa y Botón de Ubicación -->
+        <div id="map-container">
+            <div id="map"></div>
+            <div class="map-actions">
+                <button id="find-location">Encontrar mi ubicación</button>
+                <p id="distance"></p>
+            </div>
+        </div>
+        <!-- Sección de Servicio al Cliente -->
+         <div class="contact-section">
+            <img src="https://via.placeholder.com/150" alt="Servicio al Cliente">
+            <div class="contact-text">
+                <h3>Servicio al Cliente</h3>
+                <p>¿Tienes alguna duda? Habla con nuestro equipo de soporte a través de una videollamada en tiempo real.</p>
+                <a href="https://ascasd.daily.co/LLamadas" class="video-call-button">
+                    <span class="icon">&#128247;</span> Iniciar videollamada
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer>
+        <p>&copy; 2024 Rics Racs Canastillas. Todos los derechos reservados.</p>
+        <p>
+            Síguenos en:
+            <a href="#" aria-label="Facebook">Facebook</a> |
+            <a href="#" aria-label="Twitter">Twitter</a> |
+            <a href="#" aria-label="Instagram">Instagram</a>
+        </p>
+    </footer>
+    <script src="script/script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+</body>
+</html>
